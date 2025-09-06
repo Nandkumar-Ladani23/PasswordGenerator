@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0" />
+        <title>Password Generator</title>
+        <link
+            rel="stylesheet"
+            href="style.css" />
+    </head>
+    <body>
+        <div class="background-pattern"></div>
+        <div class="container">
+            <h1 class="title">Password Generator</h1>
+            <div class="password-display">
+                <div
+                    class="password-text"
+                    id="passwordText">
+                    Click "Generate" to create a password
+                </div>
+                <div class="password-actions">
+                    <button
+                        class="btn primary"
+                        id="generateBtn">
+                        Generate
+                    </button>
+                    <button
+                        class="btn copy"
+                        id="copyBtn">
+                        Copy
+                    </button>
+                    <button
+                        class="btn"
+                        id="regenerateBtn">
+                        Regenerate
+                    </button>
+                </div>
+            </div>
+
+            <div class="strength-meter">
+                <div class="strength-label">Password Strength</div>
+                <div class="strength-bar">
+                    <div
+                        class="strength-fill good"
+                        id="strengthFill"></div>
+                </div>
+                <div
+                    class="strength-text"
+                    id="strengthText">
+                    Not Generated
+                </div>
+            </div>
+            <div class="options">
+                <div class="option-group">
+                    <div class="option-label">Password Length</div>
+
+                    <div class="slider-container">
+                        <input
+                            type="range"
+                            class="slider"
+                            id="lengthSlider"
+                            min="4"
+                            max="50"
+                            value="16" />
+                        <div class="slider-value">
+                            <span>4</span>
+                            <span id="lengthValue">16</span>
+                            <span>50</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <div class="option-label">Character Types</div>
+                    <div class="checkboxes">
+                        <div
+                            class="checkbox-item"
+                            data-option="uppercase">
+                            <div
+                                class="checkbox checked"
+                                id="uppercaseCheck"></div>
+                            <div class="checkbox-label">Uppercase (A-Z)</div>
+                        </div>
+                        <div
+                            class="checkbox-item"
+                            data-option="lowercase">
+                            <div
+                                class="checkbox checked"
+                                id="lowercaseCheck"></div>
+                            <div class="checkbox-label">Lowercase (a-z)</div>
+                        </div>
+                        <div
+                            class="checkbox-item"
+                            data-option="numbers">
+                            <div
+                                class="checkbox"
+                                id="numbersCheck"></div>
+                            <div class="checkbox-label">Numbers (0-9)</div>
+                        </div>
+                        <div
+                            class="checkbox-item"
+                            data-option="symbols">
+                            <div
+                                class="checkbox"
+                                id="symbolsCheck"></div>
+                            <div class="checkbox-label">Symbols (!@#$%^&*)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="notification"
+            id="notification">
+            Password Copied!
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
