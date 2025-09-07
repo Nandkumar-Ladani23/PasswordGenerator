@@ -47,14 +47,14 @@ function updateLengthDisplay() {
     lengthValue.textContent = options.length;
 }
 
-function toggleOption(){
-    const checkCount = Object.values(options).filter((value, index) => index > 0 && value === true).length;
-    if(checkCount === 1 && options[Option] === true){
+function toggleOption(option){
+    const checkCount = ['uppercase', 'lowercase', 'numbers', 'symbols'].filter(key => options[key]).length;
+    if(checkCount === 1 && options[option] === true){
         showNotification('At least one Character type must be selected.', 'error');
-        return
+        return;
     }
-    options[Option] = !options[Option];
-    checkboxes[Option].classList.toggle('checked');
+    options[option] = !options[option];
+    checkboxes[option].classList.toggle('checked');
 }
 
 
@@ -158,21 +158,43 @@ function showNotification(message, type = 'success'){
     }, 3000);
 }
 
+// Initialize the app
+function initializeApp() {
+    updateLengthDisplay();
+    // Set initial checkbox states
+    Object.keys(checkboxes).forEach(option => {
+        if (checkboxes[option]) {
+            if (options[option]) {
+                checkboxes[option].classList.add('checked');
+            } else {
+                checkboxes[option].classList.remove('checked');
+            }
+        }
+    });
+}
+
 generateButton.addEventListener('click', generatePassword);
-regenerateBtn.addEventListener('click', generatePassword);
-copyBtn.addEventListener('click', copyPassword);
+regenerateButton.addEventListener('click', generatePassword);
+copyButton.addEventListener('click', copyPassword);
 
 
 lengthSlider.addEventListener('input', (e) => {
     options.length = parseInt(e.target.value);
     updateLengthDisplay();
-    generatePassword();
+    if (passwordText.textContent !== 'Click "Generate" to create a password') {
+        generatePassword();
+    }
 });
 
 document.querySelectorAll('.checkbox-item').forEach(item => {
     item.addEventListener('click', () => {
         const option = item.dataset.option;
         toggleOption(option);
-        generatePassword();
+        if (passwordText.textContent !== 'Click "Generate" to create a password') {
+            generatePassword();
+        }
     });
 });
+
+// Initialize the app when the page loads
+initializeApp();
